@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.22.1)
+project(nova_android)
+set(CMAKE_CXX_STANDARD 20)
+add_library(nova_android SHARED nova_android.cpp)
+find_library(log-lib log)
+target_link_libraries(nova_android ${log-lib})
