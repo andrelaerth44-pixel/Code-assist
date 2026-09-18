@@ -1,8 +1,0 @@
-package org.nova.notes
-import android.app.Activity
-import android.os.Bundle
-import android.graphics.Color
-import android.view.Gravity
-import android.widget.*
-class MainActivity:Activity(){private lateinit var runtime:NovaRuntime;private lateinit var editor:EditText;private lateinit var status:TextView
-override fun onCreate(state:Bundle?){super.onCreate(state);runtime=NovaRuntime();val p=getSharedPreferences("nova_notes",MODE_PRIVATE);val root=LinearLayout(this).apply{orientation=LinearLayout.VERTICAL;setPadding(28,24,28,20);setBackgroundColor(Color.rgb(247,247,245))};val title=TextView(this).apply{text="Notes";textSize=30f;setTextColor(Color.rgb(24,24,24));setPadding(0,0,0,18)};editor=EditText(this).apply{hint="Write a note...";textSize=18f;gravity=Gravity.TOP;text=p.getString("text","");setBackgroundColor(Color.WHITE);setPadding(22,20,22,20);minLines=10};val save=Button(this).apply{text="Save";setOnClickListener{val v=editor.text.toString();runtime.nativeSetText(v);p.edit().putString("text",v).apply();status.text="Saved"}};val clear=Button(this).apply{text="Clear";setOnClickListener{editor.setText("");runtime.nativeSetText("");p.edit().remove("text").apply();status.text="Cleared"}};status=TextView(this).apply{text=runtime.nativeVersion();textSize=13f;setTextColor(Color.DKGRAY);setPadding(0,14,0,0)};val buttons=LinearLayout(this).apply{orientation=LinearLayout.HORIZONTAL;gravity=Gravity.END;addView(clear,LinearLayout.LayoutParams(0,55,1f));addView(save,LinearLayout.LayoutParams(0,55,1f))};root.addView(title);root.addView(editor,LinearLayout.LayoutParams(-1,0,1f));root.addView(buttons);root.addView(status);setContentView(root)}}
