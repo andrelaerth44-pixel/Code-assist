@@ -1,8 +1,0 @@
-plugins { id 'com.android.application'; id 'org.jetbrains.kotlin.android' }
-android { namespace 'org.nova.notes'; compileSdk 35
-    defaultConfig { applicationId 'org.nova.notes'; minSdk 26; targetSdk 35; versionCode 1; versionName '0.1.0' }
-    buildFeatures { buildConfig true }
-    externalNativeBuild { cmake { path file('src/main/cpp/CMakeLists.txt'); version '3.30.5' } }
-    ndkVersion '27.2.12479018'
-}
-kotlin { jvmToolchain(17) }
