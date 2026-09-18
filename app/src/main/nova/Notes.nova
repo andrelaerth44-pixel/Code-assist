@@ -1,0 +1,11 @@
+app "Notes" {
+    state text = ""
+    view {
+        column {
+            title "Notes"
+            input text
+            button "Save" { save text }
+            button "Clear" { clear text }
+        }
+    }
+}
